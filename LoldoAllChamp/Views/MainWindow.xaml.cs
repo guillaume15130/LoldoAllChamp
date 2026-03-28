@@ -11,17 +11,33 @@ namespace LoldoAllChamp.Views
     public partial class MainWindow : Window
     {
         private readonly string _playerName;
-        private readonly List<Champion> _allChampions;
+        private List<Champion> _allChampions = new();
         private HashSet<string> _completedChampions;
 
         public MainWindow(string playerName)
         {
             InitializeComponent();
             _playerName = playerName;
-            _allChampions = ChampionService.GetAllChampions();
             _completedChampions = new HashSet<string>(SaveService.GetCompletedChampions(playerName));
 
             PlayerNameText.Text = playerName;
+            LoadChampionsAsync();
+        }
+
+        private async void LoadChampionsAsync()
+        {
+            try
+            {
+                var (version, champions) = await DataDragonService.FetchChampionsAsync();
+                _allChampions = champions;
+            }
+            catch
+            {
+                _allChampions = ChampionService.GetAllChampions();
+                foreach (var c in _allChampions)
+                    c.SetVersion("15.6.1");
+            }
+
             RefreshDisplay();
         }
 
@@ -49,7 +65,6 @@ namespace LoldoAllChamp.Views
             var total = _allChampions.Count;
             var done = _completedChampions.Count;
             var remaining = total - done;
-            var percent = total > 0 ? (double)done / total * 100 : 0;
 
             StatsText.Text = $"{done}/{total} champions joués ({remaining} restants)";
             ProgressBar.Maximum = total;

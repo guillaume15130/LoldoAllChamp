@@ -83,25 +83,27 @@
 
     <!-- Search Box -->
     <Style x:Key="SearchBoxStyle" TargetType="TextBox">
-        <Setter Property="Background" Value="#1a1a2e"/>
+        <Setter Property="Background" Value="#2a2a4a"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="CaretBrush" Value="White"/>
         <Setter Property="BorderBrush" Value="#0f3460"/>
         <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Padding" Value="8,0"/>
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="6" Padding="{TemplateBinding Padding}">
-                        <Grid>
+                            CornerRadius="6" Padding="8,0">
+                        <Grid VerticalAlignment="Center">
                             <TextBlock x:Name="placeholder" Text="Rechercher..."
                                        Foreground="#666680" VerticalAlignment="Center"
                                        Visibility="Collapsed"/>
-                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"/>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"
+                                          Margin="0"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
