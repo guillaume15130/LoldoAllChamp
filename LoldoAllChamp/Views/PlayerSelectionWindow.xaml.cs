@@ -41,7 +41,13 @@ namespace LoldoAllChamp.Views
             if (ExistingPlayersListBox.SelectedItem is string playerName)
             {
                 PlayerNameBox.Text = playerName;
+                StartGame();
             }
+        }
+
+        private void ExistingPlayersListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            StartGame();
         }
 
         private void StartGame()

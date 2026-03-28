@@ -28,7 +28,8 @@
 
                 <ListBox x:Name="ExistingPlayersListBox" Height="80"
                          Background="#1a1a2e" Foreground="White" BorderBrush="#0f3460"
-                         FontSize="14" SelectionChanged="ExistingPlayersListBox_SelectionChanged"/>
+                         FontSize="14" SelectionChanged="ExistingPlayersListBox_SelectionChanged"
+                         MouseDoubleClick="ExistingPlayersListBox_MouseDoubleClick"/>
 
                 <Button x:Name="StartButton" Content="C'est parti !"
                         Style="{StaticResource PrimaryButtonStyle}"
