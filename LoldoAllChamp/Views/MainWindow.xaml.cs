@@ -13,6 +13,7 @@ namespace LoldoAllChamp.Views
         private readonly string _playerName;
         private List<Champion> _allChampions = new();
         private HashSet<string> _completedChampions;
+        private readonly Stack<string> _undoStack = new();
 
         public MainWindow(string playerName)
         {
@@ -69,6 +70,18 @@ namespace LoldoAllChamp.Views
             StatsText.Text = $"{done}/{total} champions joués ({remaining} restants)";
             ProgressBar.Maximum = total;
             ProgressBar.Value = done;
+
+            // Show/hide undo button
+            if (_undoStack.Count > 0)
+            {
+                var lastChamp = _allChampions.FirstOrDefault(c => c.Id == _undoStack.Peek());
+                UndoButton.Content = $"↩ Annuler ({lastChamp?.Name ?? _undoStack.Peek()})";
+                UndoButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UndoButton.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void ChampionButton_Click(object sender, RoutedEventArgs e)
@@ -104,9 +117,21 @@ namespace LoldoAllChamp.Views
                     {
                         _completedChampions.Add(championId);
                         SaveService.MarkChampionCompleted(_playerName, championId);
+                        _undoStack.Push(championId);
                     }
                 }
 
+                RefreshDisplay();
+            }
+        }
+
+        private void UndoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_undoStack.Count > 0)
+            {
+                var championId = _undoStack.Pop();
+                _completedChampions.Remove(championId);
+                SaveService.UnmarkChampion(_playerName, championId);
                 RefreshDisplay();
             }
         }
