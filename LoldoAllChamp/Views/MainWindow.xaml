@@ -52,7 +52,9 @@
                     <TextBlock x:Name="StatsText" Foreground="White" FontSize="16" VerticalAlignment="Center"/>
                     <ProgressBar x:Name="ProgressBar" Width="300" Height="20" Margin="15,0,0,0"
                                  Foreground="#e94560" Background="#1a1a2e" VerticalAlignment="Center"/>
-                </StackPanel>
+                    <Button x:Name="UndoButton" Content="↩ Annuler le dernier"
+                            Style="{StaticResource SecondaryButtonStyle}" Margin="15,0,0,0"
+                            Click="UndoButton_Click" Visibility="Collapsed"/></StackPanel>
 
                 <CheckBox Grid.Column="2" x:Name="ShowCompletedCheckBox" Content="Afficher les champions terminés"
                           Foreground="White" FontSize="14" VerticalAlignment="Center" Margin="0,0,15,0"

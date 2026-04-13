@@ -2,10 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="LoldoAllChamp - Choix du joueur"
-        Width="500" Height="400"
+        Width="500" Height="550"
         WindowStartupLocation="CenterScreen"
         Background="#1a1a2e"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        SizeToContent="Height">
 
     <Grid>
         <Border Background="#16213e" CornerRadius="15" Margin="30" Padding="30">
@@ -28,7 +29,8 @@
 
                 <ListBox x:Name="ExistingPlayersListBox" Height="80"
                          Background="#1a1a2e" Foreground="White" BorderBrush="#0f3460"
-                         FontSize="14" SelectionChanged="ExistingPlayersListBox_SelectionChanged"/>
+                         FontSize="14" SelectionChanged="ExistingPlayersListBox_SelectionChanged"
+                         MouseDoubleClick="ExistingPlayersListBox_MouseDoubleClick"/>
 
                 <Button x:Name="StartButton" Content="C'est parti !"
                         Style="{StaticResource PrimaryButtonStyle}"

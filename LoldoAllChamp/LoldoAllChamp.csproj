@@ -4,7 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <RootNamespace>LoldoAllChamp</RootNamespace>
     <AssemblyName>LoldoAllChamp</AssemblyName>
   </PropertyGroup>
